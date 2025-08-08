@@ -74,16 +74,16 @@ def save_to_csv(data: dict, filepath: str) -> None:
     Note:
     - We guard with .get() to avoid KeyErrors if the API shape changes or fields are missing.
     """
-    items = data.get("items", [])  # Gracefully handle missing/empty lists.
+    items = data.get("items", [])
     records = []
     for item in items:
-        snippet = item.get("snippet", {})         # Safe access to nested dict
+        snippet = item.get("snippet", {})
         stats = item.get("statistics", {})
-        title = snippet.get("title", None)        # If missing, leave as None
-        views = stats.get("viewCount", None)      # YouTube returns strings; we keep them as-is here
+        title = snippet.get("title", None)
+        views = stats.get("viewCount", None)
         records.append({"title": title, "views": views})
 
-    df = pd.DataFrame(records)        # Create a simple tabular view
-    df.to_csv(filepath, index=False)  # No index column in CSV
+    df = pd.DataFrame(records)
+    df.to_csv(filepath, index=False)
 
 
