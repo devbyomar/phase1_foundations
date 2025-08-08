@@ -2,3 +2,5 @@ __pycache__/
 *.bd
 .env
 phase1_env/
+*.json
+*.csv
